@@ -26,7 +26,7 @@ class TasksController < ApplicationController
     @task = @project.tasks.build(task_params)
 
     if @task.save
-      redirect_to(@task.project)
+      redirect_to([@task.project, @task], notice: 'Task was successfully created.')
     else
       render action: 'new'
     end
@@ -35,7 +35,7 @@ class TasksController < ApplicationController
   # PUT projects/1/tasks/1
   def update
     if @task.update_attributes(task_params)
-      redirect_to(@task.project)
+      redirect_to([@task.project, @task], notice: 'Task was successfully updated.')
     else
       render action: 'edit'
     end
@@ -45,21 +45,21 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
 
-    redirect_to @project
+    redirect_to project_tasks_url(@project)
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_project
-    @project = current_user.projects.find(params[:project_id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_project
+      @project = current_user.projects.find(params[:project_id])
+    end
 
-  def set_task
-    @task = @project.tasks.find(params[:id])
-  end
+    def set_task
+      @task = @project.tasks.find(params[:id])
+    end
 
-  # Only allow a trusted parameter "white list" through.
-  def task_params
-    params.require(:task).permit(:name, :description, :status, :project_id)
-  end
+    # Only allow a trusted parameter "white list" through.
+    def task_params
+      params.require(:task).permit(:name, :description, :status, :project_id)
+    end
 end

@@ -2,7 +2,7 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.1"
-gem "rails", "~> 7.0.2", ">= 7.0.2.2"
+gem "rails", "~> 7.0.2", ">= 7.0.2.3"
 gem "sprockets-rails"
 gem "sqlite3", "~> 1.4"
 gem "puma", "~> 5.0"
@@ -12,9 +12,8 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
-gem 'nested_scaffold', '~> 1.1'
 gem 'devise', '~> 4.8', '>= 4.8.1'
-gem 'listen', '~> 3.7', '>= 3.7.1'
+gem 'nested_scaffold', '~> 1.1'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
