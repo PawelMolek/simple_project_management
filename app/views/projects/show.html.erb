@@ -5,6 +5,42 @@
 <div>
   <%= link_to "Edit this project", edit_project_path(@project) %> |
   <%= link_to "Back to projects", projects_path %>
-
-  <%= button_to "Destroy this project", @project, method: :delete %>
+  <%= button_to "Delete", @project, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete %></td>
 </div>
+
+<hr>
+
+<h1>New task</h1>
+
+<%= render 'tasks/form' %>
+
+<hr>
+
+<h1>Listing tasks</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th>Project</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @project.tasks.each do |task| %>
+    <% if task.persisted? %>
+      <tr>
+        <td><%= task.name %></td>
+        <td><%= task.description %></td>
+        <td><%= task.status %></td>
+        <td><%= task.project %></td>
+        <td><%= link_to 'Show', [task.project, task] %></td>
+        <td><%= link_to 'Edit', edit_project_task_path(task.project, task) %></td>
+        <td><%= button_to "Delete", [task.project, task], form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
