@@ -1,8 +1,7 @@
-<%= form_for([@task.project, @task], class: "form-inline") do |f| %>
+<%= form_for([@task.project, @task]) do |f| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
-
       <ul>
         <% @task.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -10,7 +9,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="input-group m-1">
     <%= f.text_field :name, class: "form-control my-1 mr-1 ml-0", placeholder: "Enter task name..." %>
     <%= f.text_field :description, class: "form-control m-1", placeholder: "Enter description..." %>
@@ -21,5 +19,4 @@
       <%= f.submit class: "btn btn-primary m-1" %>
     </div>
   </div>
-
 <% end %>

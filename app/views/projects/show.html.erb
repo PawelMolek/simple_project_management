@@ -1,48 +1,40 @@
-<%= link_to "Back", projects_path, class:"btn btn-light mb-2" %>
+<%= link_to "Back", projects_path, class: "btn btn-secondary mb-2" %>
 <div class="card">
   <div class="card-header">
     <h2 class="card-tile d-flex justify-content-between mb-4">
       <span><%= @project.name %></span>
       <div>
-        <%= link_to "Edit this project", edit_project_path(@project), class: "btn btn-warning" %>
-        <%= link_to "Delete", @project, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete, class: "btn btn-danger" %>
+        <%= link_to "Edit this project", edit_project_path(@project), class: "btn btn-dark" %>
+        <%= link_to "Delete", @project, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete, class: "btn btn-secondary" %>
       </div>
     </h2>
-    <div class="card-body">
-      <h6>New Task</h6>
-      <%= render 'tasks/form' %>
-      <%= render @project %>
+  </div>
+  <div class="card-body">
+    <h6>New Task</h6>
+    <%= render "tasks/form" %>
+    <%= render @project %>
+    <div class="mt-4">
+      <h4>Tasks</h4>
+      <% @project.tasks.each do |task| %>
+        <% if task.persisted? %>
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <span class="badge alert-<%= task.badge_color %> mb-3"><%= task.status %></span>
+                <div>
+                  <%= link_to 'Edit', edit_project_task_path(task.project, task), class: "btn btn-dark btn-sm" %>
+                  <%= link_to "Delete", [task.project, task], form: { data: { turbo_confirm: "Are you sure? " } }, method: :delete, class: "btn btn-secondary btn-sm" %>
+                </div>
+              </div>
+              <h5 class="card-tile mb-2">
+                <span><%= task.name %></span>
+              </h5>
+              <p class="mb-0"><%= task.description %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
-
-<hr>
-
-<h1>Listing tasks</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Status</th>
-    <th>Project</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-  <% @project.tasks.each do |task| %>
-    <% if task.persisted? %>
-      <tr>
-        <td><%= task.name %></td>
-        <td><%= task.description %></td>
-        <td><%= task.status %></td>
-        <td><%= task.project %></td>
-        <td><%= link_to 'Show', [task.project, task] %></td>
-        <td><%= link_to 'Edit', edit_project_task_path(task.project, task) %></td>
-        <td><%= button_to "Delete", [task.project, task], form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete %></td>
-      </tr>
-    <% end %>
-  <% end %>
-</table>
 
