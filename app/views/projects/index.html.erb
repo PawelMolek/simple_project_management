@@ -7,11 +7,24 @@
   </div>
   <div class="card-body">
     <% @projects.each do |project| %>
-      <%= link_to project, class:"text-decoration-none" do %>
+      <%= link_to project, class: "text-decoration-none" do %>
         <div class="card project-card mb-2">
           <div class="card-body">
-            <h4 class="card-title text-dark fw-b"><%= project.name %></h4>
-            <p class="text-secondary"><%= project.description %></p>
+            <div class="mb-3">
+              <div class="mb-3">
+              <span class="badge alert-<%= project.badge_color %>">
+                <%= project.status %>
+              </span>
+                <span class='text-secondary'>
+                <small>
+                  <%= project.percent_complete %>% complete
+                  (<%= project.total_complete %>/<%= project.total_tasks %> tasks)
+                </small>
+              </span>
+              </div>
+              <h4 class="card-title text-dark fw-b"><%= project.name %></h4>
+              <p class="text-secondary"><%= project.description %></p>
+            </div>
           </div>
         </div>
       <% end %>

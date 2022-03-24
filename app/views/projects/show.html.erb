@@ -1,7 +1,7 @@
 <%= link_to "Back", projects_path, class: "btn btn-secondary mb-2" %>
-<div class="card">
+<div class="card mb-5">
   <div class="card-header">
-    <h2 class="card-tile d-flex justify-content-between mb-4">
+    <h2 class="card-tile d-flex justify-content-between my-4">
       <span><%= @project.name %></span>
       <div>
         <%= link_to "Edit this project", edit_project_path(@project), class: "btn btn-dark" %>
@@ -10,9 +10,11 @@
     </h2>
   </div>
   <div class="card-body">
-    <h6>New Task</h6>
-    <%= render "tasks/form" %>
     <%= render @project %>
+    <hr>
+    <h6 class="mt-5">New Task</h6>
+    <%= render "tasks/form" %>
+    <hr>
     <div class="mt-4">
       <h4>Tasks</h4>
       <% @project.tasks.each do |task| %>

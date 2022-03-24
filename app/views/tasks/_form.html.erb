@@ -9,14 +9,10 @@
       </ul>
     </div>
   <% end %>
-  <div class="input-group m-1">
-    <%= f.text_field :name, class: "form-control my-1 mr-1 ml-0", placeholder: "Enter task name..." %>
-    <%= f.text_field :description, class: "form-control m-1", placeholder: "Enter description..." %>
-    <div class="dropdown">
-      <%= f.select :status, Task::STATUS_OPTIONS, class: "m-1" %>
-    </div>
-    <div class="input-group-append">
-      <%= f.submit class: "btn btn-primary m-1" %>
-    </div>
+  <div class="form-group row mb-5">
+      <div class="col"><%= f.text_field :name, class: "form-control", placeholder: "Enter task name..." %></div>
+      <div class="col-6"><%= f.text_field :description, class: "form-control", placeholder: "Enter description..." %></div>
+      <div class="col"><%= f.select :status, Task::STATUS_OPTIONS, {}, class: "form-select" %></div>
+      <div class="col"><%= f.submit class: "btn btn-primary" %></div>
   </div>
 <% end %>
