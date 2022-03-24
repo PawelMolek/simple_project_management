@@ -1,27 +1,20 @@
+<%= link_to "Back", projects_path, class:"btn btn-light mb-2" %>
 <div class="card">
   <div class="card-header">
     <h2 class="card-tile d-flex justify-content-between mb-4">
       <span><%= @project.name %></span>
       <div>
-        <%= link_to "Edit this project", edit_project_path(@project), class:"btn btn-warning" %>
-        <%= link_to "Delete", @project, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete, class:"btn btn-danger" %>
+        <%= link_to "Edit this project", edit_project_path(@project), class: "btn btn-warning" %>
+        <%= link_to "Delete", @project, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete, class: "btn btn-danger" %>
       </div>
     </h2>
+    <div class="card-body">
+      <h6>New Task</h6>
+      <%= render 'tasks/form' %>
+      <%= render @project %>
+    </div>
   </div>
 </div>
-<%= render @project %>
-
-<div>
-  <%= link_to "Edit this project", edit_project_path(@project) %> |
-  <%= link_to "Back to projects", projects_path %>
-  <%= button_to "Delete", @project, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete %>
-</div>
-
-<hr>
-
-<h1>New task</h1>
-
-<%= render 'tasks/form' %>
 
 <hr>
 
