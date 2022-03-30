@@ -10,9 +10,9 @@
     </div>
   <% end %>
   <div class="form-group row mb-5">
-      <div class="col"><%= f.text_field :name, class: "form-control", placeholder: "Enter task name..." %></div>
-      <div class="col-6"><%= f.text_field :description, class: "form-control", placeholder: "Enter description..." %></div>
-      <div class="col"><%= f.select :status, Task::STATUS_OPTIONS, {}, class: "form-select" %></div>
-      <div class="col"><%= f.submit class: "btn btn-primary" %></div>
+    <div class="col"><%= f.text_field :name, class: "form-control", placeholder: "Enter task name..." %></div>
+    <div class="col-6"><%= f.text_field :description, class: "form-control", placeholder: "Enter description..." %></div>
+    <div class="col"><%= f.select :status, Task::STATUS_OPTIONS, {}, class: "form-select" %></div>
+    <div class="col"><%= f.submit class: "btn btn-primary" %></div>
   </div>
 <% end %>

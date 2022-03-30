@@ -19,13 +19,16 @@
       <div class="d-flex flex-row-reverse">
 
         <% if user_signed_in? %>
-          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-outline-dark mb-0" %>
+          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-outline-dark mb-5" %>
         <% end %>
 
       </div>
-
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <% if notice.present? %>
+        <div class="alert alert-success"><%= notice %></div>
+      <%end %>
+      <% if alert.present? %>
+        <div class="alert alert-warning"><%= alert %></div>
+      <%end %>
 
       <%= yield %>
 
