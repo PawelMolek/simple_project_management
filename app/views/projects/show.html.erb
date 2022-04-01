@@ -5,7 +5,8 @@
       <span><%= @project.name %></span>
       <div>
         <%= link_to "Edit this project", edit_project_path(@project), class: "btn btn-dark" %>
-        <%= link_to "Delete", @project, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete, class: "btn btn-secondary" %>
+        <%#= link_to "Delete", @project, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete, class: "btn btn-secondary" %>
+        <%= link_to 'delete', @project, data: {turbo_method: :delete}, class: "btn btn-warning" %>
       </div>
     </h2>
   </div>
